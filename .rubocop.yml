@@ -1,0 +1,128 @@
+require:
+  - rubocop-i18n
+  - rubocop-performance
+  - rubocop-thread_safety
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 3.3.0
+  # Include:
+  Exclude:
+    - Gemfile*
+    - README
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'development_data/**/*'
+    - 'docs/**/*'
+    - 'files/**/*'
+    - 'public/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'lib/tasks/**/*'
+    - 'vendor/bundle/**/*'
+    - 'public/vendor/gems/**/*'
+    - 'spec/**/*' # TODO: later
+    - 'spec/support/**/*' # rspec support helpers have a strange api
+
+Rails:
+  Enabled: true
+
+# All cops are ovverrides of defaults. See Rubocop documentation for more information.
+
+# Layout Cops
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+# Metrics Cops
+Metrics/AbcSize:
+  Max: 22
+
+Metrics/CyclomaticComplexity:
+  Max: 7
+
+# We don't care about method length, since we check method cyclomatic complexity.
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 100
+
+# Naming Cops
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+# Naming/FileName:
+#   Exclude: ["devise-security.gemspec"]
+
+# Style Cops
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  SupportedStyles:
+    - nested
+    - compact
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+# TODO: change this eventually
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+
+Style/Lambda:
+  Enabled: false
+
+Style/RegexpLiteral:
+  EnforcedStyle: mixed
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Trailing commas make for clearer diffs because the last line won't appear
+# to have been changed, as it would if it lacked a comma and had one added.
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    # Using `[]` for string arrays instead of `()`, since normal arrays are
+    # indicated with `[]` not `()`.
+    '%i': '[]'
+    '%w': '[]'
+    '%W': '[]'
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/AndOr:
+  # Whether `and` and `or` are banned only in conditionals (conditionals)
+  # or completely (always).
+  # They read better, more like normal English.
+  Enabled: false
